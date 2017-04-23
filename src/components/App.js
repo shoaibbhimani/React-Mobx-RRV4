@@ -5,7 +5,8 @@ import { Route, withRouter } from 'react-router-dom'
 //Component
 import Header from './Header'
 import RecipesList from './RecipeList'
-import AddRecipe from './AddRecipe'
+import AddRecipe from './AddEditRecipe'
+import RecipesListItem from './RecipesListItem';
 
 import logo from '../logo.svg';
 import '../App.css';
@@ -19,6 +20,7 @@ class App extends Component {
            <Header />
         </div>
         <Route exact path="/recipes" component={RecipesList} />
+        <Route path="/recipes/:id" component={RecipesListItem} />
         <Route exact path="/addnew" component={AddRecipe} />
       </div>
     );
