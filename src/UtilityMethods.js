@@ -1,3 +1,10 @@
+const isArray = ({ list }) => {
+  if(!Array.isArray(list.slice())){
+    console.error("It is not an Array");
+    return []
+   }
+}
+
 /**
  * Add Data to a List.
  * @param {string} list - List of Item you want to add item to.
@@ -5,10 +12,7 @@
  */
 
 const addItemToList = ({ list, item }) => {
-   if(!Array.isArray(list.slice())){
-    console.error("It is not an Array");
-    return []
-   }
+   isArray({ list });
    return list.concat(item)
 };
 
@@ -18,18 +22,32 @@ const addItemToList = ({ list, item }) => {
  * @param {number} index - index at which element is that is to be removed.
  */
 
-const removeItemFromList = ({ list, index }) => {
-   if(!Array.isArray(list.slice())){
-    console.error("It is not an Array");
-    return []
-   }
+const removeItemFromList = ({ list, index }) => {   
+   isArray({ list });
    let newlist = list.slice();
    newlist.splice(index,1);
    return newlist;
 };
 
+
+/**
+ * Edit data from a List.
+ * @param {string} list - List of Item you want to add item to.
+ * @param {number} index - index at which element is that is to be removed.
+ * @param {*} newItem - Anytype we want to enter to Eexisting list Array
+ */
+
+const editDataFromList = ({ list, index, newItem }) => {
+   isArray({ list })
+   let cloneList = list.slice();
+   cloneList[index] = newItem;
+   return cloneList;
+};
+
+
 export default {
   addItemToList,
-  removeItemFromList
+  removeItemFromList,
+  editDataFromList, 
 }
 

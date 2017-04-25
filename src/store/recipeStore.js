@@ -31,11 +31,14 @@ class RecipeStore {
         }));
       }),
       editRecipe:action(({ name, desc, index }) => {
-        let recipes = this.recipes.slice();
-        let editRecipe = recipes[index];
-        editRecipe.name = name;
-        editRecipe.desc = desc;
-        this.recipes.replace(recipes);
+       this.recipes.replace(UtilityMethods.editDataFromList({
+            list: this.recipes.slice(),
+            index: this.activeRecipe.index,
+            newItem: {
+              name,
+              desc
+            }
+        }));
         this.activeRecipe = null;
       }),
       toggleActiveRecipe:action((index) => {

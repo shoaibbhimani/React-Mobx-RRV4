@@ -12,7 +12,9 @@ class RecipesListItem extends React.Component {
                         {
                             recipeStore.getRecipes.map((recipeItem, index) => {
                                 return <li  key={index} className="list-group-item">
-                                    <NavLink to={`/recipes/${index}`}>
+                                    <NavLink 
+                                      activeClassName="active"
+                                      to={`/recipes/${index}`}>
                                         {recipeItem.name}
                                     </NavLink>
                                  </li>

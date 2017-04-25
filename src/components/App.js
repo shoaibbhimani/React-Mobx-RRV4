@@ -21,7 +21,9 @@ class App extends Component {
         </div>
         <Route exact path="/recipes" component={RecipesList} />
         <Route path="/recipes/:id" component={RecipesListItem} />
-        <Route exact path="/addnew" component={AddRecipe} />
+        <Route exact path="/addnew" render={() => {
+          return <AddRecipe addRecipe={true} />
+        }} />
       </div>
     );
   }

@@ -4,12 +4,12 @@ import { inject, observer  } from 'mobx-react'
 class AddEditRecipe extends Component {
     constructor(){
         super();
-        this.addNewRecipe = this.addNewRecipe.bind(this)
+        this.addNewRecipe = this.addNewRecipe.bind(this);
     }
     addNewRecipe(evt){
         (evt) && (evt.preventDefault());
-        const { recipeStore } = this.props;
-        if(recipeStore.getActiveRecipe){
+        const { recipeStore, addRecipe } = this.props;
+        if(recipeStore.getActiveRecipe && !addRecipe){
             recipeStore.editRecipe({
                 name: this.refs.name.value,
                 desc: this.refs.desc.value,
@@ -26,7 +26,7 @@ class AddEditRecipe extends Component {
 
     }
     render(){
-        const { recipeStore } = this.props;
+        const { recipeStore, addRecipe } = this.props;
         return (
             <section>
                 <form className="form-horizontal" onSubmit={this.addNewRecipe}>
@@ -38,7 +38,7 @@ class AddEditRecipe extends Component {
                         </label>
                         <div className="col-sm-10">
                             <input
-                                defaultValue={recipeStore.getActiveRecipe ? recipeStore.getActiveRecipe.name : '' }
+                                defaultValue={recipeStore.getActiveRecipe && !addRecipe ? recipeStore.getActiveRecipe.name : '' }
                                 ref="name" type="text" className="form-control" id="inputEmail3" placeholder="Enter Name" />
                         </div>
                     </div>
@@ -48,7 +48,7 @@ class AddEditRecipe extends Component {
                             <input
                                 ref="desc"
                                 type="text"
-                                defaultValue={recipeStore.getActiveRecipe ? recipeStore.getActiveRecipe.desc : '' }
+                                defaultValue={recipeStore.getActiveRecipe && !addRecipe ? recipeStore.getActiveRecipe.desc : '' }
                                 className="form-control"
                                 id="inputPassword3"
                                 placeholder="Enter Text Content" />
@@ -57,7 +57,7 @@ class AddEditRecipe extends Component {
                     <div className="form-group">
                         <div className="col-sm-offset-2 col-sm-10">
                             <button type="submit" className="btn btn-default">
-                                {  recipeStore.getActiveRecipe ? 'Edit Recipe' : 'Add New Recipe' }
+                                {  recipeStore.getActiveRecipe && !addRecipe ? 'Edit Recipe' : 'Add New Recipe' }
                             </button>
                         </div>
                     </div>
